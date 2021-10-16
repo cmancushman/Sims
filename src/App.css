@@ -1,5 +1,25 @@
 .App {
-  text-align: center;
+  width: 50%;
+  margin: auto;
+  flex: 1;
+}
+
+.App .welcome-screen {
+    text-align: center;
+}
+
+.App .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.App .nav-button {
+    cursor: pointer;
+}
+
+.App .nav-button-disabled {
+    color: lightgray;
 }
 
 .App-logo {
