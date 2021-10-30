@@ -1,18 +1,20 @@
 import React from 'react';
-import './App.css';
-import { Router, Route } from 'react-router-dom';
-import history from './history';
-
+import './styles/App.css';
+import { Router, Route, Switch } from 'react-router-dom';
+import { createBrowserHistory } from "history";
 
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/app';
 import "firebase/auth";
 import NavBar from './NavBar';
 import Play from './content/Play';
+import Rules from './content/Rules';
+import { isMobile } from 'react-device-detect';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDvJC49j05f9tnn4X2hw4qzTBcupIRmEqY",
     authDomain: "sim-alpha-864fc.firebaseapp.com",
+    databaseURL: "https://sim-alpha-864fc-default-rtdb.firebaseio.com",
     projectId: "sim-alpha-864fc",
     storageBucket: "sim-alpha-864fc.appspot.com",
     messagingSenderId: "103414692392",
@@ -22,7 +24,12 @@ const firebaseConfig = {
 
 if (!firebase.apps?.length) {
     firebase.initializeApp(firebaseConfig);
+    if (window.localStorage.refreshToken) {
+        firebase.auth().signInWithCustomToken(window.localStorage.refreshToken);
+    }
 }
+
+const history = createBrowserHistory();
 
 type Props = {};
 
@@ -36,7 +43,7 @@ const description = '' +
 const footerDescription = `` +
     `The abbreviated word 'Sim' in 'The Human Sim' is short for simulation. ` +
     `The Human Sim is not affiliated in any way with The Sims game franchise, its developers, or Electronic Arts.`;
-export default class AppView extends React.Component<Props, State> {
+class AppView extends React.Component<Props, State> {
 
     uiConfig: any;
 
@@ -54,13 +61,13 @@ export default class AppView extends React.Component<Props, State> {
                 firebase.auth.PhoneAuthProvider.PHONE_SIGN_IN_METHOD,
                 {
                     provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-                    signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD
+                    signInMethod: firebase.auth.EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD,
                 },
             ],
             callbacks: {
                 signInSuccessWithAuthResult: (result) => {
                     this.setState({ currentUser: result?.user });
-                    window.localStorage.setItem("user", result?.user);
+                    window.localStorage.setItem("uid", result?.user.uid);
                 },
             }
         };
@@ -68,34 +75,45 @@ export default class AppView extends React.Component<Props, State> {
 
     componentDidMount() {
         firebase.auth().onAuthStateChanged(user => {
+            this.setState({ currentUser: user });
+            window.localStorage.setItem("refreshToken", user?.refreshToken);
         });
     }
 
     render() {
         const { currentUser } = this.state;
-        const localUser = window?.localStorage?.user;
+        const user = firebase.auth().currentUser;
+
+        if (window.localStorage.refreshToken && !user && !currentUser) {
+            return null;
+        }
+
         return (
-            <div className="App">
-                {currentUser || localUser
-                    ? <div>
-                        <Router history={history}>
+            <Router history={history}>
+                <div className="App">
+                    {user || currentUser
+                        ? <div>
                             <NavBar />
-                            <Route path="/" exact component={Play} />
-                            <Route path="/play" exact component={Play} />
-                            <Route path="/the-rules" exact component={() => <div />} />
-                            <Route path="/about-me" exact component={() => <div />} />
-                        </Router>
-                    </div>
-                    : <div className='welcome-screen'>
-                        <h2>Welcome to The Human Sim</h2>
-                        <p>{description}</p>
-                        <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
-                    </div>
-                }
+                            <div style={isMobile ? {paddingRight: 20, paddingLeft: 20} : {}}>
+                                <Switch>
+                                    <Route path="/" exact component={Play} />
+                                    <Route path="/play" exact component={Play} />
+                                    <Route path="/the-rules" exact component={Rules} />
+                                    <Route path="/about-me" exact component={() => <div style={{ width: 100, backgroundColor: 'red', height: 100 }} />} />
+                                </Switch>
+                            </div>
+                        </div>
+                        : <div className='welcome-screen'>
+                            <h2>Welcome to The Human Sim</h2>
+                            <p>{description}</p>
+                            <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+                        </div>
+                    }
+                </div>
                 <footer><p className={'footertext'}>{footerDescription}</p></footer>
-            </div>
+            </Router>
         );
     }
 };
 
-
+export default AppView;

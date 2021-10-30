@@ -1,17 +1,32 @@
 .App {
-  width: 50%;
   margin: auto;
   flex: 1;
 }
 
 .App .welcome-screen {
     text-align: center;
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
 }
 
 .App .navbar {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    width: 75%;
+    margin: auto;
+}
+
+.navbar .left {
+}
+
+.navbar .right {
+}
+
+.App .play {
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .App .nav-button {
@@ -55,4 +70,13 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    .App .play {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
 }

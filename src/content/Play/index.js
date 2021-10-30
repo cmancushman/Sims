@@ -1,46 +1,60 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import type { ComponentType } from 'react';
-import _ from 'lodash';
-import DropdownTreeSelect from 'react-dropdown-tree-select'
-import 'react-dropdown-tree-select/dist/styles.css'
-
-const data = [
-    {
-        label: 'Kitchen',
-        value: 'searchmetoo',
-        className: 'parent-item',
-        tagClassName: 'selected-item',
-        readOnly: true,
-        children: [
-            {
-                label: 'Cook a meal',
-                value: 'anonymous',
-                tagClassName: 'selected-item',
-            },
-        ],
-    },
-];
-
-
+import { TwitchEmbed } from 'react-twitch-embed';
+import { VotingSection } from './VotingSection';
+import { BrowserView, MobileView } from 'react-device-detect';
 
 type Props = {
 };
 
-export class Play extends React.Component<Props> {
+type State = {
+    selectedItem: string,
+    voted: boolean,
+}
+
+const description = '' +
+    'Vote on what you want me to do next, and watch me complete the top voted item.';
+
+
+export class Play extends React.Component<Props, State> {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            voted: false,
+            selectedItem: ''
+        };
+    }
+
     render(): Node {
         return (
-            <div className='flex-row full-width'>
-                <DropdownTreeSelect mode='radioSelect' data={data} onChange={_.noop} onAction={_.noop} onNodeToggle={_.noop} />
-                <button style={{width: 150, marginLeft: 20}} title={'Confirm Vote'}>Confirm Vote</button>
-            </div>
+            <>
+                <BrowserView>
+                    <div>
+                        <p style={{ textAlign: 'center', marginTop: 10, marginBottom: 20 }}>{description}</p>
+                        <div className='flex-row play' style={{ flex: 1 }}>
+                            <div style={{ flex: 1, width: '50%', marginRight: 20, border: '1px solid lightgray' }}>
+                                <TwitchEmbed width={'100%'} height={'60vh'} channel={'christhesim'} withChat={false} />
+                            </div>
+                            <VotingSection />
+                        </div>
+                    </div>
+                </BrowserView>
+                <MobileView>
+                    <div>
+                        <p style={{ textAlign: 'center', marginTop: 10, marginBottom: 20 }}>{description}</p>
+                        <div className='play' style={{ flex: 1 }}>
+                            <VotingSection />
+                            <div style={{ flex: 1, width: '100%', marginRight: 20, border: '1px solid lightgray', marginTop: 20 }}>
+                                <TwitchEmbed width={'100%'} height={'60vh'} channel={'christhesim'} withChat={false} />
+                            </div>
+                        </div>
+                    </div>
+                </MobileView>
+            </>
+
         );
     }
 }
 
-const mapStateToProps = () => {
-    return {};
-};
 
-const connected: ComponentType<Props> = connect(mapStateToProps, {})(Play);
-export default connected;
+export default Play;

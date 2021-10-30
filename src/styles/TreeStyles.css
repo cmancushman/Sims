@@ -1,0 +1,85 @@
+.react-dropdown-tree-select .dropdown .dropdown-trigger.arrow.bottom:after {
+    margin-top: 5px;
+}
+
+.react-dropdown-tree-select .dropdown .dropdown-trigger.arrow.top:after {
+    margin-top: 5px;
+}
+
+.react-dropdown-tree-select {
+    flex-grow: 1;
+}
+
+.radio-select {
+    width: 100%;
+}
+
+.tag {
+    color: black;
+}
+
+.react-dropdown-tree-select .dropdown .dropdown-content {
+    margin-top: 5px;
+    border-radius: 5px;
+    width: 100%;
+    overflow: scroll;
+    max-height: 400px;
+}
+
+.react-dropdown-tree-select .dropdown .dropdown-trigger {
+    border-radius: .25rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.react-dropdown-tree-select div a {
+    flex: 1;
+    flex-direction: row;
+    display: flex !important;
+    width: 100%;
+}
+
+.tag-list {
+    flex-grow: 1;
+    flex-direction: row;
+    display: flex !important;
+}
+
+.tag-item {
+    flex-grow: 1;
+    display: flex;
+}
+
+.tag-item:last-child {
+    display: flex;
+}
+
+.tag-item input {
+    flex-grow: 1;
+}
+
+.selected-item {
+    flex-grow: 0 !important;
+}
+
+.parent-item input {
+    display: none;
+}
+
+.parent-item label {
+    pointer-events: none;
+}
+
+.checkbox-item, .radio-item {
+    cursor: pointer;
+}
+
+.parent-item span {
+    pointer-events: none;
+}
+
+.tag-list {
+    cursor: pointer;
+}

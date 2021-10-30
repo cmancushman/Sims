@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
+}
+
+body > #root > div {
+    height: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@font-face {
+    font-family: 'MyFont';
+    src: local('MyFont'), url(../fonts/font.otf) format('opentype');
+}
+
+* {
+    font-family: 'MyFont';
+}
+
+i {
+    font-style: normal;
+}
+
+.styled-button {
+     display:inline-block;
+     padding:0.35em 1.2em;
+     border:0.1em solid #FFFFFF;
+     margin:0 0.3em 0.3em 0;
+     border-radius:0.12em;
+     box-sizing: border-box;
+     text-decoration:none;
+     font-family:'Roboto',sans-serif;
+     font-weight:300;
+     color:#FFFFFF;
+     text-align:center;
+    transition: all 0.2s;
+}
+.styled-button:hover{
+    color:#000000;
+    background-color:#FFFFFF;
+}
+
+footer {
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.footertext {
+    font-size: 10px;
+    color: lightgray;
+    margin: auto;
+    width: 50%;
+}
+
+.flex-row {
+    flex-direction: row;
+    display: flex;
+}
+
+.full-width {
+    width: '100%';
+}
+
+@media only screen and (max-width: 600px) {
+    footer {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .footertext {
+        font-size: 10px;
+        color: lightgray;
+        margin: auto;
+        width: 100%;
+    }
+}
+  
