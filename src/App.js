@@ -24,7 +24,7 @@ const firebaseConfig = {
 
 if (!firebase.apps?.length) {
     firebase.initializeApp(firebaseConfig);
-    if (window.localStorage.refreshToken) {
+    if (window.localStorage.refreshToken && window.localStorage.refreshToken !== 'undefined') {
         firebase.auth().signInWithCustomToken(window.localStorage.refreshToken);
     }
 }
@@ -83,8 +83,7 @@ class AppView extends React.Component<Props, State> {
     render() {
         const { currentUser } = this.state;
         const user = firebase.auth().currentUser;
-
-        if (window.localStorage.refreshToken && !user && !currentUser) {
+        if ((window.localStorage.refreshToken && window.localStorage.refreshToken !== 'undefined') && !user && !currentUser) {
             return null;
         }
 
