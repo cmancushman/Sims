@@ -197,8 +197,18 @@ const initialData = [
         readOnly: true,
         children: [
             {
-                label: 'Watch TV',
-                value: 'watch-tv',
+                label: 'Watch A Show',
+                value: 'watch-a-show',
+                tagClassName: 'selected-item',
+            },
+            {
+                label: 'Watch Youtube Videos',
+                value: 'watch-youtube-videos',
+                tagClassName: 'selected-item',
+            },
+            {
+                label: 'Watch A Twitch Stream',
+                value: 'watch-a-twitch-stream',
                 tagClassName: 'selected-item',
             },
             {
