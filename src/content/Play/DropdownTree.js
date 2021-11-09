@@ -271,6 +271,11 @@ const initialData = [
                 tagClassName: 'selected-item',
             },
             {
+                label: 'Play a drinking game',
+                value: 'play-a-drinking-game',
+                tagClassName: 'selected-item',
+            },
+            {
                 label: 'Have a cocktail',
                 value: 'have-a-cocktail',
                 tagClassName: 'selected-item',
@@ -403,8 +408,8 @@ const initialData = [
                 tagClassName: 'selected-item',
             },
             {
-                label: 'Practice gymnastics',
-                value: 'practice-gymnastics',
+                label: 'Practice hand stands',
+                value: 'practice-hand-stands',
                 tagClassName: 'selected-item',
             },
             {
@@ -434,6 +439,31 @@ const initialData = [
             },
         ],
     },
+    {
+        label: 'Rooftop',
+        value: 'rooftop',
+        className: 'parent-item',
+        tagClassName: 'selected-item',
+        readOnly: true,
+        children: [
+            {
+                label: 'Read a Book',
+                value: 'read-a-book',
+                tagClassName: 'selected-item',
+            },
+            {
+                label: 'Play pool',
+                value: 'play-pool',
+                tagClassName: 'selected-item',
+            },            
+            {
+                label: 'Watch TV',
+                value: 'watch-tv',
+                tagClassName: 'selected-item',
+            },
+        ],
+    },
+
 ];
 
 export class ReactDropdownTreeSelectContainer extends React.Component {
