@@ -10,6 +10,7 @@ import NavBar from './NavBar';
 import Play from './content/Play';
 import Rules from './content/Rules';
 import { isMobile } from 'react-device-detect';
+import { TwitchEmbed } from 'react-twitch-embed';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDvJC49j05f9tnn4X2hw4qzTBcupIRmEqY",
@@ -38,7 +39,7 @@ type State = { currentUser: any }
 
 const description = '' +
     'This is the human simulation, where the public (you) has control of me for the entire period of the game. ' +
-    'Sign in to get started.';
+    'Authenticate to vote, or just watch here.';
 
 const footerDescription = `` +
     `The abbreviated word 'Sim' in 'The Human Sim' is short for simulation. ` +
@@ -93,7 +94,7 @@ class AppView extends React.Component<Props, State> {
                     {user || currentUser
                         ? <div>
                             <NavBar />
-                            <div style={isMobile ? {paddingRight: 20, paddingLeft: 20} : {}}>
+                            <div style={isMobile ? { paddingRight: 20, paddingLeft: 20 } : {}}>
                                 <Switch>
                                     <Route path="/" exact component={Play} />
                                     <Route path="/play" exact component={Play} />
@@ -106,6 +107,9 @@ class AppView extends React.Component<Props, State> {
                             <h2>Welcome to The Human Sim</h2>
                             <p>{description}</p>
                             <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+                            <div style={{ marginTop: 15 }}>
+                                <TwitchEmbed width={'100%'} height={'60vh'} channel={'christhesim'} withChat={false} />
+                            </div>
                         </div>
                     }
                 </div>
