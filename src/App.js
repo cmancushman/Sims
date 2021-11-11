@@ -9,6 +9,7 @@ import "firebase/auth";
 import NavBar from './NavBar';
 import Play from './content/Play';
 import Rules from './content/Rules';
+import Pointers from './content/Pointers';
 import { isMobile } from 'react-device-detect';
 import { TwitchEmbed } from 'react-twitch-embed';
 
@@ -99,7 +100,7 @@ class AppView extends React.Component<Props, State> {
                                     <Route path="/" exact component={Play} />
                                     <Route path="/play" exact component={Play} />
                                     <Route path="/the-rules" exact component={Rules} />
-                                    <Route path="/about-me" exact component={() => <div style={{ width: 100, backgroundColor: 'red', height: 100 }} />} />
+                                    <Route path="/about-me" exact component={Pointers} />
                                 </Switch>
                             </div>
                         </div>
