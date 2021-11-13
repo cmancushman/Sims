@@ -12,6 +12,7 @@ import Rules from './content/Rules';
 import Pointers from './content/Pointers';
 import { isMobile } from 'react-device-detect';
 import { TwitchEmbed } from 'react-twitch-embed';
+import bigLogo from './bigLogo.png';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDvJC49j05f9tnn4X2hw4qzTBcupIRmEqY",
@@ -105,7 +106,9 @@ class AppView extends React.Component<Props, State> {
                             </div>
                         </div>
                         : <div className='welcome-screen'>
-                            <h2>Welcome to The Human Sim</h2>
+                            <div style={{ width: '100%', alignItems: 'center', justifyContent: 'center', display: 'flex', marginBottom: 20 }}>
+                                <img alt={'logo'} src={bigLogo} style={{ width: 200, height: 64 }} />
+                            </div>
                             <p>{description}</p>
                             <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
                             <div style={{ marginTop: 15 }}>
