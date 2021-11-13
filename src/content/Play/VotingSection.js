@@ -104,11 +104,11 @@ export class VotingSection extends React.Component<Props, State> {
                             <div style={{ flexGrow: 1 }}>
                                 <input
                                     placeholder={'Choose what I do next...'}
-                                    style={{ 
-                                        height: 41, 
-                                        width: '100%', 
-                                        display: !usingCustomVote ? 'none' : 'flex', 
-                                        borderRadius: '.25rem', 
+                                    style={{
+                                        height: 41,
+                                        width: '100%',
+                                        display: !usingCustomVote ? 'none' : 'flex',
+                                        borderRadius: '.25rem',
                                         border: '1px solid #b9b9b9',
                                         paddingLeft: 10,
                                         paddingBottom: 3
@@ -130,18 +130,18 @@ export class VotingSection extends React.Component<Props, State> {
                             <button type="button" onClick={this.confirmVote} style={{ width: 150, marginLeft: 10, height: 41 }} disabled={!selectedItem} className="btn btn-success">Confirm Vote</button>
                         </div>
                     </div> :
-                    voteStatus === 'done' ?
-                        <div style={{ flexGrow: 1, justifyContent: 'center', display: 'flex', flexDirection: 'column' }}>
-                            <h4 style={{ textAlign: 'center' }}>Voting Has Ended</h4>
-                            <h6 style={{ textAlign: 'center' }}>Top voted: {topVotedTitle}</h6>
-                        </div> :
-                        <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                            <h4 style={{ textAlign: 'center' }}>Top Voted</h4>
-                            <div style={{ borderRadius: 5, border: '1px solid lightgray', flexGrow: 1, backgroundColor: '#fafafa' }}>
-                                <BarChartRace voteNumber={voteNumber} />
-                            </div>
-                        </div>
+                    voteStatus === 'done' &&
+                    <div style={{ flexGrow: 1, justifyContent: 'center', display: 'flex', flexDirection: 'column' }}>
+                        <h4 style={{ textAlign: 'center' }}>Voting Has Ended</h4>
+                        <h6 style={{ textAlign: 'center' }}>Top voted: {topVotedTitle}</h6>
+                    </div>
                 }
+                <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                    <h4 style={{ textAlign: 'center' }}>Top Voted</h4>
+                    <div style={{ borderRadius: 5, border: '1px solid lightgray', flexGrow: 1, backgroundColor: '#fafafa' }}>
+                        <BarChartRace voteNumber={voteNumber} />
+                    </div>
+                </div>
             </div>
         );
     }
