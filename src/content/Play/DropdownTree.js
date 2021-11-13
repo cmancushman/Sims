@@ -281,6 +281,11 @@ const initialData = [
                 tagClassName: 'selected-item',
             },
             {
+                label: 'Drink a gallon of milk',
+                value: 'drink-a-gallon-of-milk',
+                tagClassName: 'selected-item',
+            },
+            {
                 label: 'Roll around on the ground',
                 value: 'roll-around-on-the-ground',
                 tagClassName: 'selected-item',
@@ -288,6 +293,50 @@ const initialData = [
             {
                 label: 'Spin in circles',
                 value: 'spin-in-circles',
+                tagClassName: 'selected-item',
+            },
+        ],
+    },
+    {
+        label: 'Purchases',
+        value: 'purchases',
+        className: 'parent-item',
+        tagClassName: 'selected-item',
+        readOnly: true,
+        children: [
+            {
+                label: 'Purchase Groceries',
+                value: 'purchase-groceries',
+                tagClassName: 'selected-item',
+            },
+            {
+                label: 'Purchase Beer',
+                value: 'purchase-beer',
+                tagClassName: 'selected-item',
+            },
+            {
+                label: 'Purchase Wine',
+                value: 'purchase-wine',
+                tagClassName: 'selected-item',
+            },
+            {
+                label: 'Purchase Liquor',
+                value: 'purchase-liquor',
+                tagClassName: 'selected-item',
+            },
+            {
+                label: 'Purchase Gallon of Milk',
+                value: 'purchase-gallon-of-milk',
+                tagClassName: 'selected-item',
+            },
+            {
+                label: 'Purchase Cigarettes',
+                value: 'purchase-cigarettes',
+                tagClassName: 'selected-item',
+            },
+            {
+                label: 'Purchase Vape Supplies',
+                value: 'purchase-vape-supplies',
                 tagClassName: 'selected-item',
             },
         ],
