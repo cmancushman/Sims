@@ -3,7 +3,7 @@ import './styles/App.css';
 import { Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from "history";
 
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+// import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/app';
 import "firebase/auth";
 import "firebase/database";
@@ -131,9 +131,10 @@ class AppView extends React.Component<Props, State> {
                                 <img alt={'logo'} src={bigLogo} style={{ width: 200, height: 64 }} />
                             </div>
                             <p>{description}</p>
-                            <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
-                            <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', marginTop: 15 }}>
-                                <h4 style={{ textAlign: 'center' }}>Top Voted</h4>
+                            {/* <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} /> */}
+                            <button type="button" onClick={() => firebase.auth().signInAnonymously()} style={{ width: 150, height: 41 }} className="btn btn-success">Start Playing</button>
+                            <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', marginTop: 30 }}>
+                                <h6 style={{ textAlign: 'center' }}>Things I Might Do Next</h6>
                                 <div style={{ borderRadius: 5, border: '1px solid lightgray', flexGrow: 1, backgroundColor: '#fafafa' }}>
                                     <BarChartRace voteNumber={voteNumber} />
                                 </div>

@@ -137,7 +137,7 @@ export class VotingSection extends React.Component<Props, State> {
                     </div>
                 }
                 <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                    <h4 style={{ textAlign: 'center' }}>Top Voted</h4>
+                    <h4 style={{ textAlign: 'center' }}>Things I Might Do Next</h4>
                     <div style={{ borderRadius: 5, border: '1px solid lightgray', flexGrow: 1, backgroundColor: '#fafafa' }}>
                         <BarChartRace voteNumber={voteNumber} />
                     </div>
