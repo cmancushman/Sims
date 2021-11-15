@@ -286,6 +286,11 @@ const initialData = [
                 tagClassName: 'selected-item',
             },
             {
+                label: 'Eat an onion',
+                value: 'eat-an-onion',
+                tagClassName: 'selected-item',
+            },
+            {
                 label: 'Roll around on the ground',
                 value: 'roll-around-on-the-ground',
                 tagClassName: 'selected-item',
