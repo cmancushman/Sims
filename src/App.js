@@ -6,6 +6,7 @@ import { createBrowserHistory } from "history";
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/app';
 import "firebase/auth";
+import "firebase/database";
 import NavBar from './NavBar';
 import Play from './content/Play';
 import Rules from './content/Rules';
@@ -13,6 +14,7 @@ import Pointers from './content/Pointers';
 import { isMobile } from 'react-device-detect';
 import { TwitchEmbed } from 'react-twitch-embed';
 import bigLogo from './bigLogo.png';
+import BarChartRace from './content/Play/BarChartRace';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDvJC49j05f9tnn4X2hw4qzTBcupIRmEqY",
@@ -36,7 +38,14 @@ const history = createBrowserHistory();
 
 type Props = {};
 
-type State = { currentUser: any }
+type State = {
+    currentUser: any,
+    voteInfo: {
+        voteNumber: number,
+        voteStatus: string,
+        topVoted: string,
+    },
+};
 
 
 const description = '' +
@@ -54,7 +63,12 @@ class AppView extends React.Component<Props, State> {
         super(props);
 
         this.state = {
-            currentUser: null
+            currentUser: null,
+            voteInfo: {
+                voteNumber: 0,
+                voteStatus: 'accepcted',
+                topVoted: '',
+            },
         }
 
         this.uiConfig = {
@@ -81,10 +95,17 @@ class AppView extends React.Component<Props, State> {
             this.setState({ currentUser: user });
             window.localStorage.setItem("refreshToken", user?.refreshToken);
         });
+
+        firebase.database().ref(`/voteInfo`).on('value', snapshot => {
+            const voteInfo = snapshot.val();
+            this.setState({ voteInfo });
+        });
     }
 
     render() {
-        const { currentUser } = this.state;
+        const { currentUser, voteInfo } = this.state;
+        const { voteNumber = 0 } = voteInfo || {};
+
         const user = firebase.auth().currentUser;
         if ((window.localStorage.refreshToken && window.localStorage.refreshToken !== 'undefined') && !user && !currentUser) {
             return null;
@@ -111,6 +132,12 @@ class AppView extends React.Component<Props, State> {
                             </div>
                             <p>{description}</p>
                             <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+                            <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', marginTop: 15 }}>
+                                <h4 style={{ textAlign: 'center' }}>Top Voted</h4>
+                                <div style={{ borderRadius: 5, border: '1px solid lightgray', flexGrow: 1, backgroundColor: '#fafafa' }}>
+                                    <BarChartRace voteNumber={voteNumber} />
+                                </div>
+                            </div>
                             <div style={{ marginTop: 15 }}>
                                 <TwitchEmbed width={'100%'} height={'60vh'} channel={'christhesim'} withChat={false} />
                             </div>
