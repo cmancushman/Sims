@@ -10,6 +10,11 @@
     margin-top: 20px;
 }
 
+.App .welcome-description {
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
 .App .navbar {
     display: flex;
     flex-direction: row;
