@@ -1,0 +1,9 @@
+{
+	"applinks": {
+		"apps": [],
+		"details": [{
+			"appID": "DDLK6X9YRH.com.whetstone.pinecone",
+			"paths": ["/share-profile/*", "/view-profile/*", "/share-protocol/*", "/share-post/*", "/share-item/*"]
+		}]
+	}
+}
